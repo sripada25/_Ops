@@ -1,22 +1,12 @@
+@Library("shared-library") _
 pipeline {
   agent any
   stages {
     stage('Hello') {
       steps {
-        echo 'Hello World'
+        sh 'echo Hello World'
+        addSidebarLink(url:'https://www.cloudbees.com/', text:'CloudBees website', icon:'/userContent/cloudbees.png')
       }
-      post {
-        success {
-          script {
-            currentBuild.result = 'FAILURE'
-          }
-        }
-      }
-    }
-  }
-  post {
-    always {
-      echo currentBuild.currentResult
     }
   }
 }
